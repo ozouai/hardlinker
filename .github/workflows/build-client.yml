@@ -50,3 +50,44 @@ jobs:
       with:
         name: hardlinker-macos-amd64
         path: clientcmd/hardlinker-macos-amd64
+    
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    
+    - name: Upload Linux Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: clientcmd/hardlinker-linux-amd64
+        asset_name: hardlinker-linux-amd64
+        asset_content_type: application/octet-stream
+    
+    - name: Upload Windows Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: clientcmd/hardlinker-windows-amd64.exe
+        asset_name: hardlinker-windows-amd64.exe
+        asset_content_type: application/octet-stream
+    
+    - name: Upload macOS Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: clientcmd/hardlinker-macos-amd64
+        asset_name: hardlinker-macos-amd64
+        asset_content_type: application/octet-stream
