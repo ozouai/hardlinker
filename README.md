@@ -52,5 +52,5 @@ The built binaries include:
 - `hardlinker-windows-amd64.exe` - Windows 64-bit binary
 - `hardlinker-macos-amd64` - macOS 64-bit binary
 
-These artifacts are automatically uploaded when a semver tag is pushed to the repository. Additionally, a GitHub release is created with these binaries attached.
+These artifacts are automatically uploaded when a semver tag is pushed to the repository.
 The YAML file location can be specified via the `LINK_YAML` environment variable, or defaults to `cwd/links.yaml`.
