@@ -22,17 +22,17 @@ jobs:
     - name: Build hardlinker binary for Linux
       run: |
         cd clientcmd
-        go build -o hardlinker-linux-amd64 .
+        CGO_ENABLED=0 go build -o hardlinker-linux-amd64 .
     
     - name: Build hardlinker binary for Windows
       run: |
         cd clientcmd
-        GOOS=windows GOARCH=amd64 go build -o hardlinker-windows-amd64.exe .
+        CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o hardlinker-windows-amd64.exe .
     
     - name: Build hardlinker binary for macOS
       run: |
         cd clientcmd
-        GOOS=darwin GOARCH=amd64 go build -o hardlinker-macos-amd64 .
+        CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o hardlinker-macos-amd64 .
     
     - name: Upload Linux artifact
       uses: actions/upload-artifact@v4
