@@ -1,5 +1,6 @@
 name: Build Client
-
+permissions:
+  contents: write
 on:
   push:
     tags:
